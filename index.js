@@ -27,6 +27,11 @@ const client = new Client({
 
 client.once('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  console.log(`Current timezone: ${timeZone}`);
+  if (timeZone !== 'Asia/Kuala_Lumpur') {
+    console.warn(`Warning: The bot is not running in the Asia/Kuala_Lumpur timezone. Current timezone is ${timeZone}.`);
+  }
 });
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
@@ -44,10 +49,13 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 
   if (!wasInTarget && nowInTarget) {
     logMessage = `✅ **${user.tag}** joined **${newState.channel.name}** at ${timestamp}`;
+    console.log(`${user.tag} ${newState.channel.name} ${timestamp}`);
   } else if (wasInTarget && !nowInTarget) {
     logMessage = `❌ **${user.tag}** left **${oldState.channel.name}** at ${timestamp}`;
+    console.log(`${user.tag} ${newState.channel.name} ${timestamp}`);
   } else if (wasInTarget && nowInTarget && oldState.channelId !== newState.channelId) {
     logMessage = `🔁 **${user.tag}** switched from **${oldState.channel.name}** to **${newState.channel.name}** at ${timestamp}`;
+    console.log(`${user.tag} ${newState.channel.name} ${timestamp}`);
   }
 
   if (logMessage) {
