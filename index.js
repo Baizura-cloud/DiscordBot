@@ -49,13 +49,13 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 
   if (!wasInTarget && nowInTarget) {
     logMessage = `✅ **${user.tag}** joined **${newState.channel.name}** at ${timestamp}`;
-    console.log(`${user.tag} ${newState.channel.name} ${timestamp}`);
+    console.log(`${user.tag}  ${timestamp}`);
   } else if (wasInTarget && !nowInTarget) {
     logMessage = `❌ **${user.tag}** left **${oldState.channel.name}** at ${timestamp}`;
-    console.log(`${user.tag} ${newState.channel.name} ${timestamp}`);
+    console.log(`${user.tag} ${timestamp}`);
   } else if (wasInTarget && nowInTarget && oldState.channelId !== newState.channelId) {
     logMessage = `🔁 **${user.tag}** switched from **${oldState.channel.name}** to **${newState.channel.name}** at ${timestamp}`;
-    console.log(`${user.tag} ${newState.channel.name} ${timestamp}`);
+    console.log(`${user.tag} ${timestamp}`);
   }
 
   if (logMessage) {
