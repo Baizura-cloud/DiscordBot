@@ -5,7 +5,8 @@ require('dotenv').config();
 const MONITORED_VOICE_CHANNELS = [
   process.env.VOICE_CHANNEL_ID1,
   process.env.VOICE_CHANNEL_ID2,
-  process.env.VOICE_CHANNEL_ID3
+  process.env.VOICE_CHANNEL_ID3,
+  process.env.VOICE_CHANNEL_ID4
 ];
 
 const TEXT_CHANNEL_ID = process.env.TEXT_CHANNEL_ID; // Send logs to this text channel
